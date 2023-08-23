@@ -37,6 +37,7 @@
 #pragma GCC target ("pclmul,sse2,aes")
 #define MBEDTLS_POP_TARGET_PRAGMA
 #elif defined(__clang__) && (__clang_major__ >= 5)
+#include <wmmintrin.h>
 #pragma clang attribute push (__attribute__((target("pclmul,sse2,aes"))), apply_to=function)
 #define MBEDTLS_POP_TARGET_PRAGMA
 #endif
