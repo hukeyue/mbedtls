@@ -356,7 +356,7 @@ endfunction(add_test_suite)
 add_definitions("-D_POSIX_C_SOURCE=200809L")
 
 if(CMAKE_COMPILER_IS_CLANG)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wdocumentation -Wno-documentation-deprecated-sync -Wunreachable-code")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-documentation-deprecated-sync -Wunreachable-code")
 endif(CMAKE_COMPILER_IS_CLANG)
 
 if(MSVC)
