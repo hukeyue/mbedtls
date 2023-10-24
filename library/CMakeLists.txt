@@ -362,6 +362,7 @@ foreach(target IN LISTS target_libraries)
         target_compile_definitions(${target}
             PUBLIC MBEDTLS_USER_CONFIG_FILE="${MBEDTLS_USER_CONFIG_FILE}")
     endif()
+    if(NOT DISABLE_PACKAGE_CONFIG_AND_INSTALL)
     install(
         TARGETS ${target}
         EXPORT MbedTLSTargets
@@ -369,6 +370,7 @@ foreach(target IN LISTS target_libraries)
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
+    endif()
 endforeach(target)
 
 set(lib_target "${MBEDTLS_TARGET_PREFIX}lib")
