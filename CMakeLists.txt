@@ -266,6 +266,16 @@ if(CMAKE_COMPILER_IS_CLANG)
     set(CMAKE_C_FLAGS_CHECK       "-Os")
 endif(CMAKE_COMPILER_IS_CLANG)
 
+# silence msvc warnings
+if(CMAKE_COMPILER_IS_CLANG)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-sign-conversion -Wno-cast-qual -Wno-extra-semi-stmt -Wno-switch-enum -Wno-unsafe-buffer-usage")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-int-conversion -Wno-declaration-after-statement -Wno-covered-switch-default")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unreachable-code-return -Wno-unreachable-code-break -Wno-unused-macros -Wno-nonportable-system-include-path")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-reserved-identifier -Wno-reserved-macro-identifier -Wno-conditional-uninitialized")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-bad-function-cast -Wno-shorten-64-to-32 -Wno-cast-align -Wno-documentation-pedantic")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-used-but-marked-unused -Wno-documentation-deprecated-sync")
+endif(CMAKE_COMPILER_IS_CLANG)
+
 if(CMAKE_COMPILER_IS_IAR)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --warn_about_c_style_casts")
     set(CMAKE_C_FLAGS_RELEASE     "-Ohz")
