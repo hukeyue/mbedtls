@@ -49,7 +49,9 @@
  *
  * Comment to disable the use of assembly code.
  */
+#ifndef MBEDTLS_NO_ASM
 #define MBEDTLS_HAVE_ASM
+#endif
 
 /**
  * \def MBEDTLS_NO_UDBL_DIVISION
@@ -2342,7 +2344,9 @@
  *
  * This modules adds support for the AES-NI instructions on x86.
  */
+#ifndef MBEDTLS_NO_ASM
 #define MBEDTLS_AESNI_C
+#endif
 
 /**
  * \def MBEDTLS_AESCE_C
@@ -3115,7 +3119,9 @@
  *
  * This modules adds support for the VIA PadLock on x86.
  */
+#ifndef MBEDTLS_NO_ASM
 #define MBEDTLS_PADLOCK_C
+#endif
 
 /**
  * \def MBEDTLS_PEM_PARSE_C

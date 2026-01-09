@@ -76,6 +76,14 @@ else()
     option(GEN_FILES "Generate the auto-generated files as needed" OFF)
 endif()
 
+
+option(MBEDTLS_NO_ASM "Allow no asm builds" OFF)
+# see include/mbedtls/check_config.h:251:2:
+# error: "MemorySanitizer does not support assembly implementation"
+if(MBEDTLS_NO_ASM)
+  add_definitions(-DMBEDTLS_NO_ASM)
+endif()
+
 option(DISABLE_PACKAGE_CONFIG_AND_INSTALL "Disable package configuration, target export and installation" ${MBEDTLS_AS_SUBPROJECT})
 
 if (CMAKE_C_SIMULATE_ID)

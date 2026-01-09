@@ -371,6 +371,9 @@ foreach(target IN LISTS target_libraries)
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
     endif()
+    if (MBEDTLS_NO_ASM)
+      target_compile_definitions(${target} PUBLIC MBEDTLS_NO_ASM)
+    endif()
 endforeach(target)
 
 set(lib_target "${MBEDTLS_TARGET_PREFIX}lib")
