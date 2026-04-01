@@ -1,6 +1,6 @@
 set(p256m_target ${MBEDTLS_TARGET_PREFIX}p256m)
 
-add_library(${p256m_target}
+add_library(${p256m_target} STATIC
     p256-m_driver_entrypoints.c
     p256-m/p256-m.c)
 

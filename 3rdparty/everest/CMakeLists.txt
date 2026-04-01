@@ -1,6 +1,6 @@
 set(everest_target "${MBEDTLS_TARGET_PREFIX}everest")
 
-add_library(${everest_target}
+add_library(${everest_target} STATIC
   library/everest.c
   library/x25519.c
   library/Hacl_Curve25519_joined.c)
