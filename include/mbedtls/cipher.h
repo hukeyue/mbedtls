@@ -387,6 +387,7 @@ typedef struct mbedtls_cipher_context_t {
  * \return      A statically-allocated array of cipher identifiers
  *              of type cipher_type_t. The last entry is zero.
  */
+MBEDTLS_DLL
 const int *mbedtls_cipher_list(void);
 
 /**
@@ -400,6 +401,7 @@ const int *mbedtls_cipher_list(void);
  *                      given \p cipher_name.
  * \return              \c NULL if the associated cipher information is not found.
  */
+MBEDTLS_DLL
 const mbedtls_cipher_info_t *mbedtls_cipher_info_from_string(const char *cipher_name);
 
 /**
@@ -412,6 +414,7 @@ const mbedtls_cipher_info_t *mbedtls_cipher_info_from_string(const char *cipher_
  *                      given \p cipher_type.
  * \return              \c NULL if the associated cipher information is not found.
  */
+MBEDTLS_DLL
 const mbedtls_cipher_info_t *mbedtls_cipher_info_from_type(const mbedtls_cipher_type_t cipher_type);
 
 /**
@@ -428,6 +431,7 @@ const mbedtls_cipher_info_t *mbedtls_cipher_info_from_type(const mbedtls_cipher_
  *                      given \p cipher_id.
  * \return              \c NULL if the associated cipher information is not found.
  */
+MBEDTLS_DLL
 const mbedtls_cipher_info_t *mbedtls_cipher_info_from_values(const mbedtls_cipher_id_t cipher_id,
                                                              int key_bitlen,
                                                              const mbedtls_cipher_mode_t mode);
@@ -595,6 +599,7 @@ static inline int mbedtls_cipher_info_has_variable_iv_size(
  *
  * \param ctx           The context to be initialized. This must not be \c NULL.
  */
+MBEDTLS_DLL
 void mbedtls_cipher_init(mbedtls_cipher_context_t *ctx);
 
 /**
@@ -606,6 +611,7 @@ void mbedtls_cipher_init(mbedtls_cipher_context_t *ctx);
  *                      function has no effect, otherwise this must point to an
  *                      initialized context.
  */
+MBEDTLS_DLL
 void mbedtls_cipher_free(mbedtls_cipher_context_t *ctx);
 
 
@@ -635,6 +641,7 @@ void mbedtls_cipher_free(mbedtls_cipher_context_t *ctx);
  * \return              #MBEDTLS_ERR_CIPHER_ALLOC_FAILED if allocation of the
  *                      cipher-specific context fails.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_setup(mbedtls_cipher_context_t *ctx,
                          const mbedtls_cipher_info_t *cipher_info);
 
@@ -827,6 +834,7 @@ static inline mbedtls_operation_t mbedtls_cipher_get_operation(
  *                      parameter-verification failure.
  * \return              A cipher-specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_setkey(mbedtls_cipher_context_t *ctx,
                           const unsigned char *key,
                           int key_bitlen,
@@ -876,6 +884,7 @@ int mbedtls_cipher_set_padding_mode(mbedtls_cipher_context_t *ctx,
  * \return          #MBEDTLS_ERR_CIPHER_BAD_INPUT_DATA on
  *                  parameter-verification failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_set_iv(mbedtls_cipher_context_t *ctx,
                           const unsigned char *iv,
                           size_t iv_len);
@@ -913,6 +922,7 @@ int mbedtls_cipher_set_iv(mbedtls_cipher_context_t *ctx,
  * \return        #MBEDTLS_ERR_CIPHER_BAD_INPUT_DATA on
  *                parameter-verification failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_reset(mbedtls_cipher_context_t *ctx);
 
 #if defined(MBEDTLS_GCM_C) || defined(MBEDTLS_CHACHAPOLY_C)
@@ -928,6 +938,7 @@ int mbedtls_cipher_reset(mbedtls_cipher_context_t *ctx);
  * \return              \c 0 on success.
  * \return              A specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_update_ad(mbedtls_cipher_context_t *ctx,
                              const unsigned char *ad, size_t ad_len);
 #endif /* MBEDTLS_GCM_C || MBEDTLS_CHACHAPOLY_C */
@@ -962,6 +973,7 @@ int mbedtls_cipher_update_ad(mbedtls_cipher_context_t *ctx,
  *                      unsupported mode for a cipher.
  * \return              A cipher-specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_update(mbedtls_cipher_context_t *ctx,
                           const unsigned char *input,
                           size_t ilen, unsigned char *output,
@@ -1008,6 +1020,7 @@ int mbedtls_cipher_update(mbedtls_cipher_context_t *ctx,
  *                      should be handled carefully; see the warning above.
  * \return              A cipher-specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_finish(mbedtls_cipher_context_t *ctx,
                           unsigned char *output, size_t *olen);
 
@@ -1054,6 +1067,7 @@ int mbedtls_cipher_finish(mbedtls_cipher_context_t *ctx,
  *                      expecting a full block but not receiving one.
  * \return              A cipher-specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_finish_padded(mbedtls_cipher_context_t *ctx,
                                  unsigned char *output, size_t *olen,
                                  size_t *invalid_padding);
@@ -1076,6 +1090,7 @@ int mbedtls_cipher_finish_padded(mbedtls_cipher_context_t *ctx,
  * \return              \c 0 on success.
  * \return              A specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_write_tag(mbedtls_cipher_context_t *ctx,
                              unsigned char *tag, size_t tag_len);
 
@@ -1093,6 +1108,7 @@ int mbedtls_cipher_write_tag(mbedtls_cipher_context_t *ctx,
  * \return              \c 0 on success.
  * \return              A specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_check_tag(mbedtls_cipher_context_t *ctx,
                              const unsigned char *tag, size_t tag_len);
 #endif /* MBEDTLS_GCM_C || MBEDTLS_CHACHAPOLY_C */
@@ -1130,6 +1146,7 @@ int mbedtls_cipher_check_tag(mbedtls_cipher_context_t *ctx,
  *                      while decrypting.
  * \return              A cipher-specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_crypt(mbedtls_cipher_context_t *ctx,
                          const unsigned char *iv, size_t iv_len,
                          const unsigned char *input, size_t ilen,
@@ -1180,6 +1197,7 @@ int mbedtls_cipher_crypt(mbedtls_cipher_context_t *ctx,
  *                      parameter-verification failure.
  * \return              A cipher-specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_auth_encrypt_ext(mbedtls_cipher_context_t *ctx,
                                     const unsigned char *iv, size_t iv_len,
                                     const unsigned char *ad, size_t ad_len,
@@ -1236,6 +1254,7 @@ int mbedtls_cipher_auth_encrypt_ext(mbedtls_cipher_context_t *ctx,
  * \return              #MBEDTLS_ERR_CIPHER_AUTH_FAILED if data is not authentic.
  * \return              A cipher-specific error code on failure.
  */
+MBEDTLS_DLL
 int mbedtls_cipher_auth_decrypt_ext(mbedtls_cipher_context_t *ctx,
                                     const unsigned char *iv, size_t iv_len,
                                     const unsigned char *ad, size_t ad_len,

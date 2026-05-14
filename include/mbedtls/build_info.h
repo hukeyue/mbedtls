@@ -189,6 +189,31 @@
  */
 #define MBEDTLS_CONFIG_IS_FINALIZED
 
+// MBEDTLS_DLL
+//
+// When building mbedtls as a DLL, this macro expands to `__declspec(dllexport)`
+// so we can annotate symbols appropriately as being exported. When used in
+// headers consuming a DLL, this macro expands to `__declspec(dllimport)` so
+// that consumers know the symbol is defined inside the DLL. In all other cases,
+// the macro expands to nothing.
+#if defined(_WIN32)
+#  if defined(MBEDTLS_BUILD_DLL)
+#    define MBEDTLS_DLL __declspec(dllexport)
+#  elif defined(MBEDTLS_CONSUME_DLL)
+#    define MBEDTLS_DLL __declspec(dllimport)
+#  else
+#    define MBEDTLS_DLL
+#  endif
+#else
+#  if defined(MBEDTLS_BUILD_DLL)
+#    define MBEDTLS_DLL __attribute__((visibility("default")))
+#  elif defined(MBEDTLS_CONSUME_DLL)
+#    define MBEDTLS_DLL
+#  else
+#    define MBEDTLS_DLL
+#  endif
+#endif  // defined(_WIN32)
+
 #include "mbedtls/check_config.h"
 
 #endif /* MBEDTLS_BUILD_INFO_H */

@@ -317,6 +317,13 @@ if(USE_SHARED_MBEDTLS_LIBRARY)
     set_target_properties(${mbedcrypto_target} PROPERTIES VERSION 3.6.6 SOVERSION 16)
     target_link_libraries(${mbedcrypto_target} PUBLIC ${libs})
 
+    target_compile_definitions(${mbedcrypto_target}
+      PRIVATE
+        MBEDTLS_BUILD_DLL
+      INTERFACE
+        MBEDTLS_CONSUME_DLL
+    )
+
     if(TARGET ${everest_target})
         target_link_libraries(${mbedcrypto_target} PUBLIC ${everest_target})
     endif()
